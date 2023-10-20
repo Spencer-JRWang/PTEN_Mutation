@@ -1,0 +1,16 @@
+---
+title: "ROC"
+output: html_document
+date: "2023-10-05"
+---
+
+```{r}
+library(corrplot)
+paras <- read.table("paras.txt",sep="\t",header=TRUE)
+cor_colors <- colorRampPalette(c("#000066", "white", "#FF0000"))(50)
+correlations <- cor(paras[,3:17], method = "spearman")
+pdf("paras_corrplot.pdf", height = 10, width = 10)
+corrplot(correlations, method = "color", order = "hclust", addCoef.col = "grey", col = cor_colors, tl.col="black")
+dev.off()
+
+```

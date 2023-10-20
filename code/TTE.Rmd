@@ -1,0 +1,14 @@
+---
+title: "Total energy"
+output: html_document
+date: "2023-10-04"
+---
+
+```{r}
+data_tt <- read.table("data/itasser-totalenergy.txt",sep="\t",header=TRUE)
+```
+```
+
+```{r}
+p_tt <- ggplot(betweenness,aes(x=POSITION,y=scale(Betweenness),fill=Disease)) + geom_bar(stat = 'identity',width = 2)+xlab("Residue Number")+ylab("Betweenness")+ theme_cowplot() + theme(legend.position="none") + scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'))
+```

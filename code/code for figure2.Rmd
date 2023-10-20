@@ -1,0 +1,240 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+ATTENTION: remove all
+do not click casually
+```{r}
+rm(list = ls())
+```
+
+## 基于弹性网络的动力学特征计算基于弹性网络的动力学特征计算
+
+#### read data and do preparations
+```{r}
+data <- read.table("data/itasser_dyn.txt",sep="\t",header=TRUE)
+site <- read.table("data/itasser_pos_dyn.txt",sep="\t",header=TRUE) 
+site <- site[order(site$Site), ]
+site_new <- site[!duplicated(site$Site, fromLast = TRUE), ]
+library(ggplot2)
+library(cowplot) 
+```
+
+```{r}
+data$Disease <- NA
+for (i in 1:nrow(data)) {
+  position <- data$POSITION[i]
+  if (position %in% site$Site) {
+    disease <- site$Disease[site$Site == position]
+    data$Disease[i] <- disease[length(disease)]
+  }
+}
+```
+
+#### draw figures
+
+- 位点计算
+```{r}
+p1 <- ggplot(data, aes(x = POSITION, y = Effectiveness)) + 
+  geom_bar(stat = "identity", 
+           color = "transparent", 
+           fill = ifelse(data$POSITION %in% site$Site, 
+                         ifelse(data$Disease == "ASD", "#A1A9D0",
+                                ifelse(data$Disease == "Cancer", "#F0988C",
+                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
+                         "grey")) +
+  xlab("Residues") + ylab("Effectiveness") + 
+  theme_cowplot()
+
+p1 <- p1 + geom_point(data = site_new, aes(x = Site, y = Effectiveness, color = Disease), 
+                      size = 2.8, pch = 19) + 
+  scale_colour_manual(values = c("#A1A9D0", "#F0988C", "#B883D4", "#9E9E9E"), 
+                      breaks = c("ASD", "Cancer", "ASD_Cancer", "Control")) + 
+  theme_cowplot()+ theme(legend.position="none")
+
+```
+
+```{r}
+p2 <- ggplot(data,aes(x=POSITION,y=Sensitivity)) + 
+  geom_bar(stat = "identity", 
+           color = "transparent", 
+           fill = ifelse(data$POSITION %in% site$Site, 
+                         ifelse(data$Disease == "ASD", "#A1A9D0",
+                                ifelse(data$Disease == "Cancer", "#F0988C",
+                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
+                         "grey"))+
+  xlab("Residues")+ylab('Sensitivity') + theme_cowplot()
+
+p2 <- p2 + geom_point(data=site_new,aes(x=Site,y=Sensitivity,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot() +  theme(legend.position="none")
+```
+
+```{r}
+p3 <- ggplot(data,aes(x=POSITION,y=MSF)) + 
+  geom_bar(stat = "identity", 
+           color = "transparent", 
+           fill = ifelse(data$POSITION %in% site$Site, 
+                         ifelse(data$Disease == "ASD", "#A1A9D0",
+                                ifelse(data$Disease == "Cancer", "#F0988C",
+                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
+                         "grey"))+
+  xlab("Residues")+ylab('MSF') + theme_cowplot()
+p3 <- p3 + geom_point(data=site_new,aes(x=Site,y=MSF,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")+ theme(legend.position="none")
+```
+
+```{r}
+p4 <- ggplot(data,aes(x=POSITION,y=DFI)) + 
+  geom_bar(stat = "identity", 
+           color = "transparent", 
+           fill = ifelse(data$POSITION %in% site$Site, 
+                         ifelse(data$Disease == "ASD", "#A1A9D0",
+                                ifelse(data$Disease == "Cancer", "#F0988C",
+                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
+                         "grey"))+
+  xlab("Residues")+ylab('DFI') + theme_cowplot()
+p4 <- p4 + geom_point(data=site_new,aes(x=Site,y=DFI,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")
+```
+
+```{r}
+p5 <- ggplot(data,aes(x=POSITION,y=Stiffness)) + 
+  geom_bar(stat = "identity", 
+           color = "transparent", 
+           fill = ifelse(data$POSITION %in% site$Site, 
+                         ifelse(data$Disease == "ASD", "#A1A9D0",
+                                ifelse(data$Disease == "Cancer", "#F0988C",
+                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
+                         "grey"))+
+  xlab("Residues")+ylab('Stiffness') + theme_cowplot()
+p5 <- p5 + geom_point(data=site_new,aes(x=Site,y=Stiffness,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")
+```
+
+####save
+```{r}
+ggsave(p1, file="Figures/弹性网络/Effectiveness.jpg", 
+       width =18, height= 4, dpi=1200)
+ggsave(p2, file="Figures/弹性网络/Sensitivity.jpg", 
+       width =18, height=4, dpi=1200)
+ggsave(p3, file="Figures/弹性网络/MSF.jpg", 
+       width=18, height=4, dpi=1200)
+ggsave(p4, file="Figures/弹性网络/DFI.jpg", 
+       width =18, height=4, dpi=1200)
+ggsave(p5, file="Figures/弹性网络/Stiffness.jpg", 
+       width =18, height=4, dpi=1200)
+```
+
+#### violin plot
+```{r}
+library(ggpubr)
+pv1 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y=Effectiveness, fill = Disease, color = Disease)) +
+  geom_violin(trim=FALSE) +
+  geom_boxplot(width=0.2, fill="white", color="black") +
+  scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  scale_color_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  labs(x="Disease", y="Effectiveness", fill="Disease") +
+  theme_minimal()
+my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
+pv1 <- pv1 + scale_y_continuous(limits = c(-0.01,0.045))
+pv1 <- pv1 + theme(legend.position = "none",panel.grid = element_blank())
+pv1 <- pv1 + stat_compare_means(comparisons = my_comparisons,
+                       label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       method = "wilcox.test")
+pv1 <- pv1 + theme(axis.line = element_line(color = "black"),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
+```
+
+```{r}
+library(ggpubr)
+pv2 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y = Sensitivity, fill = Disease, color = Disease)) +
+  geom_violin(trim=FALSE) +
+  geom_boxplot(width=0.2, fill="white", color="black") +
+  scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  scale_color_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  labs(x="Disease", y="Sensitivity", fill="Disease") +
+  theme_minimal()
+my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
+pv2 <- pv2 + scale_y_continuous(limits = c(-0.01,0.085))
+pv2 <- pv2 + theme(legend.position = "none",panel.grid = element_blank())
+pv2 <- pv2 + stat_compare_means(comparisons = my_comparisons,
+                      label.y = c(0.055,0.06,0.065,0.07,0.075,0.082),
+                       method = "wilcox.test")
+pv2 <- pv2 + theme(axis.line = element_line(color = "black"),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
+```
+
+```{r}
+library(ggpubr)
+pv3 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y = MSF, fill = Disease, color = Disease)) +
+  geom_violin(trim=FALSE) +
+  geom_boxplot(width=0.2, fill="white", color="black") +
+  scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  scale_color_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  labs(x="Disease", y="MSF", fill="Disease") +
+  theme_minimal()
+my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
+pv3 <- pv3 + scale_y_continuous(limits = c(0,0.5))
+pv3 <- pv3 + theme(legend.position = "none",panel.grid = element_blank())
+pv3 <- pv3 + stat_compare_means(comparisons = my_comparisons,
+                      label.y = c(0.3,0.33,0.36,0.39,0.42,0.45),
+                       method = "wilcox.test")
+pv3 <- pv3 + theme(axis.line = element_line(color = "black"),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
+```
+
+```{r}
+library(ggpubr)
+pv4 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y = DFI, fill = Disease, color = Disease)) +
+  geom_violin(trim=FALSE) +
+  geom_boxplot(width=0.2, fill="white", color="black") +
+  scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  scale_color_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  labs(x="Disease", y="DFI", fill="Disease") +
+  theme_minimal()
+my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
+pv4 <- pv4 + scale_y_continuous(limits = c(-0.0005,0.015))
+pv4 <- pv4 + theme(legend.position = "none",panel.grid = element_blank())
+pv4 <- pv4 + stat_compare_means(comparisons = my_comparisons,
+                      label.y = c(0.008,0.009,0.01,0.011,0.012,0.013),
+                       method = "wilcox.test")
+pv4 <- pv4 + theme(axis.line = element_line(color = "black"),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
+```
+
+```{r}
+library(ggpubr)
+pv5 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y = Stiffness, fill = Disease, color = Disease)) +
+  geom_violin(trim=FALSE) +
+  geom_boxplot(width=0.2, fill="white", color="black") +
+  scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  scale_color_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),limits=c("ASD", "Cancer", 'ASD_Cancer', 'Control')) +
+  labs(x="Disease", y="Stiffness", fill="Disease") +
+  theme_minimal()
+my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
+pv5 <- pv5 + scale_y_continuous(limits = c(5,42))
+pv5 <- pv5 + theme(legend.position = "none",panel.grid = element_blank())
+pv5 <- pv5 + stat_compare_means(comparisons = my_comparisons,
+                      label.y = c(22,26,30,34,38,42),
+                       method = "wilcox.test")
+pv5 <- pv5 + theme(axis.line = element_line(color = "black"),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
+```
+
+#### save
+```{r}
+ggsave(pv1, file="Figures/弹性网络/Effectiveness_violin.jpg", 
+       width = 4, height=4, dpi=1200)
+ggsave(pv2, file="Figures/弹性网络/Sensitivity_violin.jpg", 
+       width = 4, height=4, dpi=1200)
+ggsave(pv3, file="Figures/弹性网络/MSF_violin.jpg", 
+       width = 4, height=4, dpi=1200)
+ggsave(pv4, file="Figures/弹性网络/DFI_violin.jpg", 
+       width = 4, height=4, dpi=1200)
+ggsave(pv5, file="Figures/弹性网络/Stiffness_violin.jpg", 
+       width = 4, height=4, dpi=1200)
+
+```
