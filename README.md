@@ -18,4 +18,4 @@ git clone https://github.com/LoveUCB/Research
 
 > Department of Bioinformatics, Medical College at Soochow University
 
-> jrwangspencer@stu.suda.edu.cn
+> :mailbox: jrwangspencer@stu.suda.edu.cn
