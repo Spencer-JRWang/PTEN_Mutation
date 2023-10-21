@@ -14,4 +14,6 @@
 ```
 git clone https://github.com/LoveUCB/Research
 ```
->                                                                             produced by Spencer Wang
+> produced by Spencer Wang
+> Medical College at Soochow University
+> jrwangspencer@stu.suda.edu.cn
