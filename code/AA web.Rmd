@@ -72,14 +72,15 @@ pv6 <- ggplot(betweenness, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_
   labs(x="Disease", y="betweenness", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-#pv6 <- pv6 + scale_y_continuous(limits = c(-0.01,0.045))
+pv6 <- pv6 + scale_y_continuous(limits = c(-15,29))
 pv6 <- pv6 + theme(legend.position = "none",panel.grid = element_blank())
 pv6 <- pv6 + stat_compare_means(comparisons = my_comparisons,
-                       #label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       label.y = c(18,21,27,18,24,18),
                        method = "wilcox.test")
-pv6 <- pv6 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv6 <- pv6 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 
 ```
 
@@ -93,14 +94,15 @@ pv7 <- ggplot(closeness, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Ca
   labs(x="Disease", y="Closeness", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-#pv6 <- pv6 + scale_y_continuous(limits = c(-0.01,0.045))
+pv7 <- pv7 + scale_y_continuous(limits = c(-2.3e-06,7e-06))
 pv7 <- pv7 + theme(legend.position = "none",panel.grid = element_blank())
 pv7 <- pv7 + stat_compare_means(comparisons = my_comparisons,
-                       #label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       label.y = c(5.1e-06,5.5e-06,6.5e-06,5.1e-06,6.1e-06,5.1e-06),
                        method = "wilcox.test")
-pv7 <- pv7 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv7 <- pv7 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 
 ```
 
@@ -117,11 +119,12 @@ my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Con
 #pv6 <- pv6 + scale_y_continuous(limits = c(-0.01,0.045))
 pv8 <- pv8 + theme(legend.position = "none",panel.grid = element_blank())
 pv8 <- pv8 + stat_compare_means(comparisons = my_comparisons,
-                       #label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       label.y = c(0.28,0.32,0.4,0.28,0.36,0.28),
                        method = "wilcox.test")
-pv8 <- pv8 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv8 <- pv8 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 
 ```
 
@@ -138,9 +141,10 @@ my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Con
 #pv6 <- pv6 + scale_y_continuous(limits = c(-0.01,0.045))
 pv9 <- pv9 + theme(legend.position = "none",panel.grid = element_blank())
 pv9 <- pv9 + stat_compare_means(comparisons = my_comparisons,
-                       #label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       label.y = c(0.27,0.33,0.44,0.27,0.39,0.27),
                        method = "wilcox.test")
-pv9 <- pv9 + theme(axis.line = element_line(color = "black"),
+pv9 <- pv9 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
                  panel.grid.major = element_blank(),
                  panel.grid.minor = element_blank())
 
@@ -159,20 +163,21 @@ my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Con
 #pv6 <- pv6 + scale_y_continuous(limits = c(-0.01,0.045))
 pv10 <- pv10 + theme(legend.position = "none",panel.grid = element_blank())
 pv10 <- pv10 + stat_compare_means(comparisons = my_comparisons,
-                       #label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       label.y = c(0.5,0.6,0.8,0.5,0.7,0.5),
                        method = "wilcox.test")
-pv10 <- pv10 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv10 <- pv10 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 
 ```
 
 
 #### save
 ```{r}
-ggsave <- ggsave(pv6,filename = "Figures/氨基酸网络构建/betweenness_violin.jpg",width = 4,height = 4,dpi = 1200)
-ggsave <- ggsave(pv7,filename = "Figures/氨基酸网络构建/closeness_violin.jpg",width =4 ,height = 4,dpi = 1200)
-ggsave <- ggsave(pv8,filename = "Figures/氨基酸网络构建/degree_violin.jpg",width = 4,height = 4,dpi = 1200)
-ggsave <- ggsave(pv9,filename = "Figures/氨基酸网络构建/evcent_violin.jpg",width = 4,height = 4,dpi = 1200)
-ggsave <- ggsave(pv10,filename = "Figures/氨基酸网络构建/clustering_violin.jpg",width = 4,height = 4,dpi = 1200)
+ggsave <- ggsave(pv6,filename = "../Figures/氨基酸网络构建/betweenness_violin.jpg",width = 4,height = 4,dpi = 1200)
+ggsave <- ggsave(pv7,filename = "../Figures/氨基酸网络构建/closeness_violin.jpg",width =5.5 ,height = 5.5,dpi = 1200)
+ggsave <- ggsave(pv8,filename = "../Figures/氨基酸网络构建/degree_violin.jpg",width = 4,height = 4,dpi = 1200)
+ggsave <- ggsave(pv9,filename = "../Figures/氨基酸网络构建/evcent_violin.jpg",width = 4,height = 4,dpi = 1200)
+ggsave <- ggsave(pv10,filename = "../Figures/氨基酸网络构建/clustering_violin.jpg",width = 4,height = 4,dpi = 1200)
 ```

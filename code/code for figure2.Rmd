@@ -146,14 +146,15 @@ pv1 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer"
   labs(x="Disease", y="Effectiveness", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-pv1 <- pv1 + scale_y_continuous(limits = c(-0.01,0.045))
+pv1 <- pv1 + scale_y_continuous(limits = c(-0.002,0.032))
 pv1 <- pv1 + theme(legend.position = "none",panel.grid = element_blank())
 pv1 <- pv1 + stat_compare_means(comparisons = my_comparisons,
-                       label.y = c(0.03,0.033,0.036,0.039,0.042,0.045),
+                       label.y = c(0.023,0.025,0.0295,0.023,0.0275,0.023),
                        method = "wilcox.test")
-pv1 <- pv1 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv1 <- pv1 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -166,14 +167,15 @@ pv2 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer"
   labs(x="Disease", y="Sensitivity", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-pv2 <- pv2 + scale_y_continuous(limits = c(-0.01,0.085))
+pv2 <- pv2 + scale_y_continuous(limits = c(-0.007,0.073))
 pv2 <- pv2 + theme(legend.position = "none",panel.grid = element_blank())
 pv2 <- pv2 + stat_compare_means(comparisons = my_comparisons,
-                      label.y = c(0.055,0.06,0.065,0.07,0.075,0.082),
+                      label.y = c(0.055,0.06,0.07,0.055,0.0658,0.055),
                        method = "wilcox.test")
-pv2 <- pv2 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv2 <- pv2 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -186,14 +188,15 @@ pv3 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer"
   labs(x="Disease", y="MSF", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-pv3 <- pv3 + scale_y_continuous(limits = c(0,0.5))
+pv3 <- pv3 + scale_y_continuous(limits = c(0,0.38))
 pv3 <- pv3 + theme(legend.position = "none",panel.grid = element_blank())
 pv3 <- pv3 + stat_compare_means(comparisons = my_comparisons,
-                      label.y = c(0.3,0.33,0.36,0.39,0.42,0.45),
+                      label.y = c(0.28,0.31,0.363,0.28,0.34,0.28),
                        method = "wilcox.test")
-pv3 <- pv3 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv3 <- pv3 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -206,14 +209,15 @@ pv4 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer"
   labs(x="Disease", y="DFI", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-pv4 <- pv4 + scale_y_continuous(limits = c(-0.0005,0.015))
+pv4 <- pv4 + scale_y_continuous(limits = c(-0.0005,0.0097))
 pv4 <- pv4 + theme(legend.position = "none",panel.grid = element_blank())
 pv4 <- pv4 + stat_compare_means(comparisons = my_comparisons,
-                      label.y = c(0.008,0.009,0.01,0.011,0.012,0.013),
+                      label.y = c(0.007,0.0077,0.0091,0.007,0.0084,0.007),
                        method = "wilcox.test")
-pv4 <- pv4 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv4 <- pv4 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -226,27 +230,28 @@ pv5 <- ggplot(site, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer"
   labs(x="Disease", y="Stiffness", fill="Disease") +
   theme_minimal()
 my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c("ASD", "Control"), c( 'Cancer','ASD_Cancer'), c('Cancer', 'Control'), c('ASD_Cancer','Control'))
-pv5 <- pv5 + scale_y_continuous(limits = c(5,42))
+pv5 <- pv5 + scale_y_continuous(limits = c(9,25.5))
 pv5 <- pv5 + theme(legend.position = "none",panel.grid = element_blank())
 pv5 <- pv5 + stat_compare_means(comparisons = my_comparisons,
-                      label.y = c(22,26,30,34,38,42),
+                      label.y = c(22,23,25,22,24.1,22),
                        method = "wilcox.test")
-pv5 <- pv5 + theme(axis.line = element_line(color = "black"),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+pv5 <- pv5 + theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 #### save
 ```{r}
-ggsave(pv1, file="Figures/弹性网络/Effectiveness_violin.jpg", 
+ggsave(pv1, file="../Figures/弹性网络/Effectiveness_violin.jpg", 
        width = 4, height=4, dpi=1200)
-ggsave(pv2, file="Figures/弹性网络/Sensitivity_violin.jpg", 
+ggsave(pv2, file="../Figures/弹性网络/Sensitivity_violin.jpg", 
        width = 4, height=4, dpi=1200)
-ggsave(pv3, file="Figures/弹性网络/MSF_violin.jpg", 
+ggsave(pv3, file="../Figures/弹性网络/MSF_violin.jpg", 
        width = 4, height=4, dpi=1200)
-ggsave(pv4, file="Figures/弹性网络/DFI_violin.jpg", 
+ggsave(pv4, file="../Figures/弹性网络/DFI_violin.jpg", 
        width = 4, height=4, dpi=1200)
-ggsave(pv5, file="Figures/弹性网络/Stiffness_violin.jpg", 
+ggsave(pv5, file="../Figures/弹性网络/Stiffness_violin.jpg", 
        width = 4, height=4, dpi=1200)
 
 ```
