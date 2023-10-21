@@ -10,7 +10,7 @@
 - data中是目前的处理数据
 - figure中是已经绘制的图像
 ## 使用说明
+- 将项目导入进你的电脑
 ```
 git clone https://github.com/LoveUCB/Research
 ```
-将项目导入进你的电脑
