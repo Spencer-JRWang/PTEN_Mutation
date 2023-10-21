@@ -55,9 +55,10 @@ p1 <- p1 + geom_point(data = site_new, aes(x = Site, y = Effectiveness, color = 
                       breaks = c("ASD", "Cancer", "ASD_Cancer", "Control")) + 
   theme_cowplot() + theme(legend.position="none")
 
-p1 <- p1 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+p1 <- p1 +  theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 
 ```
 
@@ -70,9 +71,10 @@ p2 <- ggplot(data,aes(x=POSITION,y=Sensitivity)) +
 
 p2 <- p2 + geom_point(data=site_new,aes(x=Site,y=Sensitivity,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot() +  theme(legend.position="none")
 
-p2 <- p2 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+p2 <- p2 +  theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -85,9 +87,10 @@ p3 <- ggplot(data,aes(x=POSITION,y=MSF)) +
 
 p3 <- p3 + geom_point(data=site_new,aes(x=Site,y=MSF,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot() + theme(legend.position="none")+ theme(legend.position="none")
 
-p3 <- p3 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+p3 <- p3 +  theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -98,9 +101,10 @@ p4 <- ggplot(data,aes(x=POSITION,y=DFI)) +
   xlab("Residues")+ylab('DFI') + theme_cowplot()
 p4 <- p4 + geom_point(data=site_new,aes(x=Site,y=DFI,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")
 
-p4 <- p4 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+p4 <- p4 +  theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ```{r}
@@ -111,9 +115,10 @@ p5 <- ggplot(data,aes(x=POSITION,y=Stiffness)) +
   xlab("Residues")+ylab('Stiffness') + theme_cowplot()
 p5 <- p5 + geom_point(data=site_new,aes(x=Site,y=Stiffness,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")
 
-p5 <- p5 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
-                 panel.grid.major = element_blank(),
-                 panel.grid.minor = element_blank())
+p5 <- p5 +  theme(axis.line = element_blank(),
+                  panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())
 ```
 
 ####save

@@ -86,7 +86,7 @@ for (i in 1:nrow(data_en)) {
     data_en$end[i] <- end[4]
   } else if (data_en$Region[i] == "CTT") {
     data_en$start[i] <- start[5]
-    data_en$end[i] <- end[5]
+    data_en$end[i] <- end[5] 
   }
 }
 ```
