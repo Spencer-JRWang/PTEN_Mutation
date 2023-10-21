@@ -14,8 +14,8 @@ rm(list = ls())
 
 #### read data and do preparations
 ```{r}
-data <- read.table("data/itasser_dyn.txt",sep="\t",header=TRUE)
-site <- read.table("data/itasser_pos_dyn.txt",sep="\t",header=TRUE) 
+data <- read.table("../data/itasser_dyn.txt",sep="\t",header=TRUE)
+site <- read.table("../data/itasser_pos_dyn.txt",sep="\t",header=TRUE) 
 site <- site[order(site$Site), ]
 site_new <- site[!duplicated(site$Site, fromLast = TRUE), ]
 library(ggplot2)
@@ -39,12 +39,13 @@ for (i in 1:nrow(data)) {
 ```{r}
 p1 <- ggplot(data, aes(x = POSITION, y = Effectiveness)) + 
   geom_bar(stat = "identity", 
-           color = "transparent", 
-           fill = ifelse(data$POSITION %in% site$Site, 
-                         ifelse(data$Disease == "ASD", "#A1A9D0",
-                                ifelse(data$Disease == "Cancer", "#F0988C",
-                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
-                         "grey")) +
+           color = "transparent",
+           fill = "grey") +
+           #fill = ifelse(data$POSITION %in% site$Site, 
+                         #ifelse(data$Disease == "ASD", "#A1A9D0",
+                                #ifelse(data$Disease == "Cancer", "#F0988C",
+                                       #ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
+                         #"grey")) +
   xlab("Residues") + ylab("Effectiveness") + 
   theme_cowplot()
 
@@ -52,7 +53,11 @@ p1 <- p1 + geom_point(data = site_new, aes(x = Site, y = Effectiveness, color = 
                       size = 2.8, pch = 19) + 
   scale_colour_manual(values = c("#A1A9D0", "#F0988C", "#B883D4", "#9E9E9E"), 
                       breaks = c("ASD", "Cancer", "ASD_Cancer", "Control")) + 
-  theme_cowplot()+ theme(legend.position="none")
+  theme_cowplot() + theme(legend.position="none")
+
+p1 <- p1 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
 
 ```
 
@@ -60,67 +65,69 @@ p1 <- p1 + geom_point(data = site_new, aes(x = Site, y = Effectiveness, color = 
 p2 <- ggplot(data,aes(x=POSITION,y=Sensitivity)) + 
   geom_bar(stat = "identity", 
            color = "transparent", 
-           fill = ifelse(data$POSITION %in% site$Site, 
-                         ifelse(data$Disease == "ASD", "#A1A9D0",
-                                ifelse(data$Disease == "Cancer", "#F0988C",
-                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
-                         "grey"))+
+           fill = "grey")  +
   xlab("Residues")+ylab('Sensitivity') + theme_cowplot()
 
 p2 <- p2 + geom_point(data=site_new,aes(x=Site,y=Sensitivity,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot() +  theme(legend.position="none")
+
+p2 <- p2 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
 ```
 
 ```{r}
 p3 <- ggplot(data,aes(x=POSITION,y=MSF)) + 
   geom_bar(stat = "identity", 
            color = "transparent", 
-           fill = ifelse(data$POSITION %in% site$Site, 
-                         ifelse(data$Disease == "ASD", "#A1A9D0",
-                                ifelse(data$Disease == "Cancer", "#F0988C",
-                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
-                         "grey"))+
+           fill = "grey") +
   xlab("Residues")+ylab('MSF') + theme_cowplot()
-p3 <- p3 + geom_point(data=site_new,aes(x=Site,y=MSF,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")+ theme(legend.position="none")
+
+
+p3 <- p3 + geom_point(data=site_new,aes(x=Site,y=MSF,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot() + theme(legend.position="none")+ theme(legend.position="none")
+
+p3 <- p3 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
 ```
 
 ```{r}
 p4 <- ggplot(data,aes(x=POSITION,y=DFI)) + 
   geom_bar(stat = "identity", 
            color = "transparent", 
-           fill = ifelse(data$POSITION %in% site$Site, 
-                         ifelse(data$Disease == "ASD", "#A1A9D0",
-                                ifelse(data$Disease == "Cancer", "#F0988C",
-                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
-                         "grey"))+
+           fill = "grey") +
   xlab("Residues")+ylab('DFI') + theme_cowplot()
 p4 <- p4 + geom_point(data=site_new,aes(x=Site,y=DFI,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")
+
+p4 <- p4 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
 ```
 
 ```{r}
 p5 <- ggplot(data,aes(x=POSITION,y=Stiffness)) + 
   geom_bar(stat = "identity", 
            color = "transparent", 
-           fill = ifelse(data$POSITION %in% site$Site, 
-                         ifelse(data$Disease == "ASD", "#A1A9D0",
-                                ifelse(data$Disease == "Cancer", "#F0988C",
-                                       ifelse(data$Disease == "ASD_Cancer", "#B883D4", "#9E9E9E"))),
-                         "grey"))+
+           fill = "grey") +
   xlab("Residues")+ylab('Stiffness') + theme_cowplot()
 p5 <- p5 + geom_point(data=site_new,aes(x=Site,y=Stiffness,color=Disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))+ theme_cowplot()+ theme(legend.position="none")
+
+p5 <- p5 +  theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank())
 ```
 
 ####save
 ```{r}
-ggsave(p1, file="Figures/弹性网络/Effectiveness.jpg", 
-       width =18, height= 4, dpi=1200)
-ggsave(p2, file="Figures/弹性网络/Sensitivity.jpg", 
-       width =18, height=4, dpi=1200)
-ggsave(p3, file="Figures/弹性网络/MSF.jpg", 
-       width=18, height=4, dpi=1200)
-ggsave(p4, file="Figures/弹性网络/DFI.jpg", 
-       width =18, height=4, dpi=1200)
-ggsave(p5, file="Figures/弹性网络/Stiffness.jpg", 
-       width =18, height=4, dpi=1200)
+ggsave(p1, file="../Figures/弹性网络/Effectiveness.jpg", 
+       width = 9, height= 4, dpi=1200)
+ggsave(p2, file="../Figures/弹性网络/Sensitivity.jpg", 
+       width = 9, height = 4, dpi=1200)
+ggsave(p3, file="../Figures/弹性网络/MSF.jpg", 
+       width = 9, height = 4, dpi=1200)
+ggsave(p4, file="../Figures/弹性网络/DFI.jpg", 
+       width = 9, height=4, dpi=1200)
+ggsave(p5, file="../Figures/弹性网络/Stiffness.jpg", 
+       width = 9, height = 4, dpi=1200)
 ```
 
 #### violin plot
