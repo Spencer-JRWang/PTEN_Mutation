@@ -14,4 +14,4 @@
 ```
 git clone https://github.com/LoveUCB/Research
 ```
-> produced by Spencer Wang
+>                                                    produced by Spencer Wang
