@@ -5,10 +5,17 @@ date: "2023-10-04"
 ---
 
 ```{r}
-data_tt <- read.table("data/itasser-totalenergy.txt",sep="\t",header=TRUE)
-```
+data_tt <- read.table("../data/itasser-totalenergy.txt",sep="\t",header=TRUE)
+library(ggplot2)
+library(cowplot)
 ```
 
 ```{r}
-p_tt <- ggplot(betweenness,aes(x=POSITION,y=scale(Betweenness),fill=Disease)) + geom_bar(stat = 'identity',width = 2)+xlab("Residue Number")+ylab("Betweenness")+ theme_cowplot() + theme(legend.position="none") + scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'))
+p_tt <- ggplot(data_tt,aes(x=res_id,y=scale(itasser_total_energy),fill=disease)) + geom_bar(stat = 'identity',width = 2)+xlab("Residue Number")+ylab("ΔΔG")+ theme_cowplot() + theme(axis.line = element_blank(),panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 1),legend.position="none") + scale_fill_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'))
+```
+
+
+```{r}
+ggsave(p_tt, file="../Figures/Total Energy/TTE.jpg", 
+       width = 9, height=4, dpi=1200)
 ```
