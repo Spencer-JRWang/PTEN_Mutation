@@ -45,17 +45,17 @@ shape_palette_1 <- c(1,2,3,4)
 
 
 ```{r}
-all_en <- read.table("data/Si.csv",sep = ',',header = T)
+all_en <- read.table("../data/Si.csv",sep = ',',header = T)
 colnames(all_en) <- c("residue","entropy")
 ```
 
 ```{r}
 library(ggplot2)
-coco <- read.csv('data/entropy1.csv')
+coco <- read.csv('../data/entropy1.csv')
 coco <- coco[order(coco$residue), ]
 #coco <- coco[!duplicated(coco$residue), ]
 
-data <- read.csv('data/entropy1.csv')
+data <- read.csv('../data/entropy1.csv')
 data <- merge(all_en,data,by = "residue",all  = T)
 data <- data[order(data$residue), ]
 data <- data[!duplicated(data$residue), ]
@@ -118,8 +118,8 @@ p_en <- p_en + theme(legend.position = "none",panel.grid = element_blank())
 
 
 ```{r}
-ggsave(p_en, file="Figures/figure1/Entropy.jpg", 
-       width =12, height=3, dpi=1200)
+ggsave(p_en, file="../Figures/figure1/Entropy.jpg", 
+       width = 11.2, height=4, dpi=1200)
 ```
 
 ###entropy的小提琴图
@@ -166,7 +166,7 @@ library(ggsignif)
 data <- read.csv('data/consurf5.csv')
 breaks <- c(0, 15, 189, 350, 403)
 Region <- cut(data$residue, breaks, 
-                   labels = c("PBD", "PD", "C2D", "CTT"), 
+                   labels = c("PBD", "PD", "C2D", "CTT"),                                           
                    include.lowest = TRUE)
 
 data_surf <- data.frame(data$residue,data$consurfgrade,data$disease,Region)
@@ -258,16 +258,16 @@ ggsave(p, file="Figures/violin.jpg",
 ### data process
 
 ```{r}
-all_co <- read.table("data/MI.csv",sep = ',',header = T)
+all_co <- read.table("../data/MI.csv",sep = ',',header = T)
 ```
 
 ```{r}
 library(ggplot2)
-coco <- read.csv('data/coevolution.csv')
+coco <- read.csv('../data/coevolution.csv')
 coco <- coco[order(coco$residue), ]
 #coco <- coco[!duplicated(coco$residue), ]
 
-data <- read.csv('data/coevolution.csv')
+data <- read.csv('../data/coevolution.csv')
 data <- merge(all_co,data,by = "residue",all  = T)
 data <- data[order(data$residue), ]
 data <- data[!duplicated(data$residue), ]
@@ -316,11 +316,11 @@ p_co <- ggplot(data_co, aes(x = residue, y = all_coevolution)) +
 p_co <- p_co + geom_point(data=coco,aes(x=residue,y=coevolution,color=disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control")) 
 
 
-p_co <- p_co + scale_x_continuous(limits = c(0,410)) + scale_y_continuous(limits = c(-0.11,0.8))
-p_co <- p_co + geom_rect(data = data_co, aes(xmin = start, xmax = end, ymin = -0.11, ymax = 0, fill = Region),color = "transparent") +
+p_co <- p_co + scale_x_continuous(limits = c(0,410)) + scale_y_continuous(limits = c(-0.072,0.7))
+p_co <- p_co + geom_rect(data = data_co, aes(xmin = start, xmax = end, ymin = -0.072, ymax = 0, fill = Region),color = "transparent") +
   scale_fill_manual(values = c("PBD" = "#8ECFC9", "PD" = "#FFBE7A"," " = "transparent", "C2D" = "#FA7F6F", "CTT" = "#82B0D2")) +
-  geom_text(aes(x = start + (end - start)/2, y = -0.09, label = Region), vjust = 0, color = 'black',size = 5) +
-  geom_segment(aes(x = 185, y = -0.055, xend = 190, yend = -0.055), color = "grey", linetype = "solid", size = 1)+
+  geom_text(aes(x = start + (end - start)/2, y = -0.053, label = Region), vjust = 0, color = 'black',size = 5) +
+  geom_segment(aes(x = 185, y = -0.036, xend = 190, yend = -0.035), color = "grey", linetype = "solid", size = 1)+
   theme_minimal()
 
 p_co <- p_co + theme(panel.border = element_rect(linetype = 'solid', colour = 'black',fill = NA,size = 0.7),
@@ -350,8 +350,8 @@ ggsave(p_domian, file="Figures/domian.jpg",
 ```
 
 ```{r}
-ggsave(p_co, file="Figures/figure1/coevolution.jpg", 
-       width = 12, height=3, dpi=1200)
+ggsave(p_co, file="../Figures/figure1/coevolution.jpg", 
+       width = 11.2, height=4, dpi=1200)
 ```
 
 ###画coevolution的小提琴图
