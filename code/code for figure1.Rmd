@@ -101,7 +101,7 @@ p_en <- ggplot(data_en, aes(x = residue, y = all_entropy)) +
   labs(x="Residues", y="S(i)", color="Diseases", shape="Diseases") + 
   theme_bw()
 
-p_en <- p_en + geom_point(data=coco,aes(x=residue,y=entropy,color=disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))
+p_en <- p_en + geom_point(data=coco,aes(x=residue,y=entropy,color=disease),size=3.5,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control"))
 
 p_en <- p_en + scale_x_continuous(limits = c(0,410)) + scale_y_continuous(limits = c(-0.3,2.6))
 p_en <- p_en + geom_rect(data = data_en, aes(xmin = start, xmax = end, ymin = -0.3, ymax = 0, fill = Region),color = "transparent") +
@@ -313,7 +313,7 @@ p_co <- ggplot(data_co, aes(x = residue, y = all_coevolution)) +
   labs(x="Residues", y="MI", color="Diseases", shape="Diseases") + 
   theme_bw()
 
-p_co <- p_co + geom_point(data=coco,aes(x=residue,y=coevolution,color=disease),size=2.8,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control")) 
+p_co <- p_co + geom_point(data=coco,aes(x=residue,y=coevolution,color=disease),size=3.5,pch=19) + scale_colour_manual(values=c('#A1A9D0','#F0988C','#B883D4','#9E9E9E'),breaks = c("ASD", "Cancer", "ASD_Cancer", "Control")) 
 
 
 p_co <- p_co + scale_x_continuous(limits = c(0,410)) + scale_y_continuous(limits = c(-0.072,0.7))
