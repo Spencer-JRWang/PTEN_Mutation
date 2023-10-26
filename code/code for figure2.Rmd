@@ -121,7 +121,7 @@ p5 <- p5 +  theme(axis.line = element_blank(),
                   panel.grid.minor = element_blank())
 ```
 
-####save
+#### save
 ```{r}
 ggsave(p1, file="../Figures/弹性网络/Effectiveness.jpg", 
        width = 9, height= 4, dpi=1200)
