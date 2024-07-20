@@ -178,5 +178,4 @@ p_3 <- p_3 + theme(axis.text.x = element_blank())
 # combine the plots
 library(patchwork)
 p <-  p_1/ p_2/ p_3
-ggsave(p, file="figure/mutation_distribution.pdf", 
-       width = 9, height=4)
+ggsave(p, file="figure/mutation_distribution.pdf", width = 9, height=4)
