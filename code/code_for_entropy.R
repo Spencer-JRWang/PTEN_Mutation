@@ -4,7 +4,7 @@ library(cowplot)
 library(ggpubr)
 
 # read data
-setwd("/Users/wangjingran/Desktop/Research")
+setwd("/Users/wangjingran/Desktop/PTEN_Mutation")
 paras <- read.table("data/paras.txt", header = TRUE)
 all_en <- read.table("data/Si.csv",sep = ',',header = T)
 colnames(all_en) <- c("residue","Entropy")

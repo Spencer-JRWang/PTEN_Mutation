@@ -4,7 +4,7 @@ library(cowplot)
 library(ggpubr)
 
 # read data
-setwd("/Users/wangjingran/Desktop/Research")
+setwd("/Users/wangjingran/Desktop/PTEN_Mutation")
 paras <- read.table("data/paras.txt", header = TRUE)
 data <- paras[,c(1,2)]
 asd <- data[data$Disease == "ASD",2]

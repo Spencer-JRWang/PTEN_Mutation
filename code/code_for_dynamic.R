@@ -4,7 +4,7 @@ library(cowplot)
 library(ggpubr)
 
 # read data
-setwd("/Users/wangjingran/Desktop/Research")
+setwd("/Users/wangjingran/Desktop/PTEN_Mutation")
 paras <- read.table("data/paras.txt", header = TRUE)
 all <- read.table("data/dyn.txt",sep="\t",header=TRUE)
 
@@ -49,8 +49,8 @@ p1 <- ggplot(all, aes(x = residue, y = Effectiveness)) +
   xlab("Residues") + ylab("Effectiveness") + 
   theme_cowplot()
 p1 <- p1 + geom_point(data = data, aes(x = residue, y = Effectiveness, color = Disease), position = position_jitterdodge(jitter.width = 0, dodge.width = 1.7),size = 3, pch = 18) + 
-  scale_colour_manual(values = c("#82B0D2", "#FFBE7A", "#FA7F6F"), 
-                      breaks = c("ASD", "Cancer", "ASD_Cancer")) + 
+  scale_colour_manual(values = c("#FFBE7A", "#82B0D2", "#FA7F6F"), 
+                      breaks = c("Cancer", "ASD", "ASD_Cancer")) + 
   theme_cowplot() + theme(legend.position="none")
 p1 <- p1 + geom_rect(data = data, aes(xmin = start, xmax = end, ymin = -3.4, ymax = -0.2, fill = Region),color = "transparent")  +
   scale_fill_manual(values = c("PBD" = '#A1A9D0', "PD" = '#F0988C'," " = "transparent", "C2D" = '#B883D4', "CTT" = "#8ECFC9")) +
@@ -72,7 +72,7 @@ p2 <- ggplot(all[1:395,],aes(x=residue,y=Sensitivity)) +
            fill = "grey")  +
   xlab("Residues")+ylab('Sensitivity') + theme_cowplot()
 p2 <- p2 + geom_point(data=data[data$residue<=395,], aes(x=residue,y=Sensitivity,color=Disease),size=3,pch=18,position = position_jitterdodge(jitter.width = 0, dodge.width = 1.7)) +
-    scale_colour_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),breaks = c("ASD", "Cancer", "ASD_Cancer"))+ theme_cowplot() +  theme(legend.position="none")
+    scale_colour_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),breaks = c("Cancer", "ASD", "ASD_Cancer"))+ theme_cowplot() +  theme(legend.position="none")
 p2 <- p2 + geom_rect(data = data, aes(xmin = start, xmax = end, ymin = -0.48, ymax = -0.02, fill = Region),color = "transparent")  +
   scale_fill_manual(values = c("PBD" = '#A1A9D0', "PD" = '#F0988C'," " = "transparent", "C2D" = '#B883D4', "CTT" = "#8ECFC9")) +
   geom_segment(aes(x = 185, y = -0.25, xend = 190, yend = -0.25), color = "grey", linetype = "solid", size = 1)+
@@ -92,7 +92,7 @@ p3 <- ggplot(all,aes(x=residue,y=MSF)) +
            fill = "grey") +
   xlab("Residues")+ylab('MSF') + theme_cowplot()
 p3 <- p3 + geom_point(data=data,aes(x=residue,y=MSF,color=Disease),size=3,pch=18,position = position_jitterdodge(jitter.width = 0, dodge.width = 1.7)) + 
-    scale_colour_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),breaks = c("ASD", "Cancer", "ASD_Cancer"))+ theme_cowplot() + theme(legend.position="none")+ theme(legend.position="none")
+    scale_colour_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),breaks = c("Cancer", "ASD", "ASD_Cancer"))+ theme_cowplot() + theme(legend.position="none")+ theme(legend.position="none")
 p3 <- p3 + geom_rect(data = data, aes(xmin = start, xmax = end, ymin = -0.12, ymax = -0.01, fill = Region),color = "transparent")  +
   scale_fill_manual(values = c("PBD" = '#A1A9D0', "PD" = '#F0988C'," " = "transparent", "C2D" = '#B883D4', "CTT" = "#8ECFC9")) +
   geom_segment(aes(x = 185, y = -0.065, xend = 190, yend = -0.065), color = "grey", linetype = "solid", size = 1)+
@@ -112,7 +112,7 @@ p4 <- ggplot(all,aes(x=residue,y=DFI)) +
            fill = "grey") +
   xlab("Residues")+ylab('DFI') + theme_cowplot()
 p4 <- p4 + geom_point(data=data,aes(x=residue,y=DFI,color=Disease),size=3,pch=18,position = position_jitterdodge(jitter.width = 0, dodge.width = 1.7)) + 
-    scale_colour_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),breaks = c("ASD", "Cancer", "ASD_Cancer"))+ theme_cowplot()+ theme(legend.position="none")
+    scale_colour_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),breaks = c("Cancer", "ASD", "ASD_Cancer"))+ theme_cowplot()+ theme(legend.position="none")
 
 p4 <- p4 + geom_rect(data = data, aes(xmin = start, xmax = end, ymin = -0.0012, ymax = -0.00008, fill = Region),color = "transparent")  +
   scale_fill_manual(values = c("PBD" = '#A1A9D0', "PD" = '#F0988C'," " = "transparent", "C2D" = '#B883D4', "CTT" = "#8ECFC9")) +
@@ -134,7 +134,7 @@ p5 <- ggplot(all,aes(x=residue,y=Stiffness)) +
            fill = "grey") +
   xlab("Residues")+ylab('Stiffness') + theme_cowplot()
 p5 <- p5 + geom_point(data=data,aes(x=residue,y=Stiffness,color=Disease),size=3,pch=18,position = position_jitterdodge(jitter.width = 0, dodge.width = 1.7)) + 
-    scale_colour_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),breaks = c("ASD", "Cancer", "ASD_Cancer"))+ theme_cowplot()+ theme(legend.position="none")
+    scale_colour_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),breaks = c("Cancer", "ASD", "ASD_Cancer"))+ theme_cowplot()+ theme(legend.position="none")
 p5 <- p5 + geom_rect(data = data, aes(xmin = start, xmax = end, ymin = -1.6, ymax = -0.1, fill = Region),color = "transparent")  +
   scale_fill_manual(values = c("PBD" = '#A1A9D0', "PD" = '#F0988C'," " = "transparent", "C2D" = '#B883D4', "CTT" = "#8ECFC9")) +
   geom_segment(aes(x = 185, y = -0.85, xend = 190, yend = -0.85), color = "grey", linetype = "solid", size = 1)+
@@ -160,14 +160,14 @@ ggsave(p5, file="figure/Stiffness.pdf",
        width = 9, height = 4)
 
 # Violin
-pv1 <- ggplot(data, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer")), y=Effectiveness, fill = Disease, color = Disease)) +
+my_comparisons <- list(c("Cancer","ASD"), c('Cancer', 'ASD_Cancer'), c('ASD','ASD_Cancer'))
+pv1 <- ggplot(data, aes(x=factor(Disease, levels=c("Cancer", "ASD", "ASD_Cancer")), y=Effectiveness, fill = Disease, color = Disease)) +
   geom_violin(trim=FALSE) +
   geom_boxplot(width=0.2, fill="white", color="black") +
-  scale_fill_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
-  scale_color_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
+  scale_fill_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
+  scale_color_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
   labs(x="Disease", y="Effectiveness", fill="Disease") +
   theme_minimal()
-my_comparisons <- list(c("ASD", "Cancer"), c('ASD', 'ASD_Cancer'), c( 'Cancer','ASD_Cancer'))
 pv1 <- pv1 + scale_y_continuous(limits = c(-5,54))
 pv1 <- pv1 + theme(legend.position = "none",panel.grid = element_blank())
 pv1 <- pv1 + stat_compare_means(comparisons = my_comparisons,
@@ -178,14 +178,13 @@ pv1 <- pv1 + theme(axis.line = element_blank(),
                   panel.grid.major = element_blank(),
                   panel.grid.minor = element_blank())
 
-pv2 <- ggplot(data, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer")), y = Sensitivity, fill = Disease, color = Disease)) +
+pv2 <- ggplot(data, aes(x=factor(Disease, levels=c("Cancer", "ASD", "ASD_Cancer")), y = Sensitivity, fill = Disease, color = Disease)) +
   geom_violin(trim=FALSE) +
   geom_boxplot(width=0.2, fill="white", color="black") +
-  scale_fill_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
-  scale_color_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
+  scale_fill_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
+  scale_color_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
   labs(x="Disease", y="Sensitivity", fill="Disease") +
   theme_minimal()
-#pv2 <- pv2 + scale_y_continuous(limits = c(-0.007,0.073))
 pv2 <- pv2 + theme(legend.position = "none",panel.grid = element_blank())
 pv2 <- pv2 + stat_compare_means(comparisons = my_comparisons,
                        label.y = c(120,130,120),
@@ -195,11 +194,11 @@ pv2 <- pv2 + theme(axis.line = element_blank(),
                   panel.grid.major = element_blank(),
                   panel.grid.minor = element_blank())
 
-pv3 <- ggplot(data, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer")), y = MSF, fill = Disease, color = Disease)) +
+pv3 <- ggplot(data, aes(x=factor(Disease, levels=c("Cancer", "ASD", "ASD_Cancer")), y = MSF, fill = Disease, color = Disease)) +
   geom_violin(trim=FALSE) +
   geom_boxplot(width=0.2, fill="white", color="black") +
-  scale_fill_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
-  scale_color_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
+  scale_fill_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
+  scale_color_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
   labs(x="Disease", y="MSF", fill="Disease") +
   theme_minimal()
 pv3 <- pv3 + theme(legend.position = "none",panel.grid = element_blank())
@@ -211,11 +210,11 @@ pv3 <- pv3 + theme(axis.line = element_blank(),
                   panel.grid.major = element_blank(),
                   panel.grid.minor = element_blank())
 
-pv4 <- ggplot(data, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y = DFI, fill = Disease, color = Disease)) +
+pv4 <- ggplot(data, aes(x=factor(Disease, levels=c("Cancer", "ASD", "ASD_Cancer")), y = DFI, fill = Disease, color = Disease)) +
   geom_violin(trim=FALSE) +
   geom_boxplot(width=0.2, fill="white", color="black") +
-  scale_fill_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
-  scale_color_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
+  scale_fill_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
+  scale_color_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
   labs(x="Disease", y="DFI", fill="Disease") +
   theme_minimal()
 
@@ -229,15 +228,13 @@ pv4 <- pv4 + theme(axis.line = element_blank(),
                   panel.grid.major = element_blank(),
                   panel.grid.minor = element_blank())
 
-pv5 <- ggplot(data, aes(x=factor(Disease, levels=c("ASD", "Cancer", "ASD_Cancer", "Control")), y = Stiffness, fill = Disease, color = Disease)) +
+pv5 <- ggplot(data, aes(x=factor(Disease, levels=c("Cancer", "ASD", "ASD_Cancer")), y = Stiffness, fill = Disease, color = Disease)) +
   geom_violin(trim=FALSE) +
   geom_boxplot(width=0.2, fill="white", color="black") +
-  scale_fill_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
-  scale_color_manual(values=c("#82B0D2", "#FFBE7A", "#FA7F6F"),limits=c("ASD", "Cancer", 'ASD_Cancer')) +
+  scale_fill_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
+  scale_color_manual(values=c("#FFBE7A", "#82B0D2", "#FA7F6F"),limits=c("Cancer", "ASD", "ASD_Cancer")) +
   labs(x="Disease", y="Stiffness", fill="Disease") +
   theme_minimal()
-
-#pv5 <- pv5 + scale_y_continuous(limits = c(9,25.5))
 pv5 <- pv5 + theme(legend.position = "none",panel.grid = element_blank())
 pv5 <- pv5 + stat_compare_means(comparisons = my_comparisons,
                       label.y = c(20,21.5,20),

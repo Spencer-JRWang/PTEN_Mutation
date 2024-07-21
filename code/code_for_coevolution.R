@@ -4,7 +4,7 @@ library(cowplot)
 library(ggpubr)
 
 # read data
-setwd("/Users/wangjingran/Desktop/Research")
+setwd("/Users/wangjingran/Desktop/PTEN_Mutation")
 paras <- read.table("data/paras.txt", header = TRUE)
 all_co <- read.table("data/MI.csv",sep = ',',header = T)
 data <- paras[c(1,2,3)]
