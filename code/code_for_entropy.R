@@ -5,10 +5,10 @@ library(ggpubr)
 
 # read data
 setwd("/Users/wangjingran/Desktop/PTEN_Mutation")
-paras <- read.table("data/paras.txt", header = TRUE)
+paras <- read.csv("data/Entropy.csv", header = TRUE)
 all_en <- read.table("data/Si.csv",sep = ',',header = T)
 colnames(all_en) <- c("residue","Entropy")
-data <- paras[c(1,2,5)]
+data <- paras[c(1,2,3)]
 data <- data %>% group_by(residue) %>% distinct(Disease, .keep_all = TRUE)
 breaks <- c(0, 15, 184, 189, 350, 403)
 Region <- cut(data$residue, breaks, 

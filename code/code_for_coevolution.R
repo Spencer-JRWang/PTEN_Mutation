@@ -5,10 +5,10 @@ library(ggpubr)
 
 # read data
 setwd("/Users/wangjingran/Desktop/PTEN_Mutation")
-paras <- read.table("data/paras.txt", header = TRUE)
+paras <- read.csv("data/Co_evolution.csv", header = TRUE)
 all_co <- read.table("data/MI.csv",sep = ',',header = T)
 data <- paras[c(1,2,3)]
-colnames(data)[3] <- "coevolution"
+colnames(data)[2] <- "coevolution"
 data <- data %>% group_by(residue) %>% distinct(Disease, .keep_all = TRUE)
 breaks <- c(0, 15, 184, 189, 350, 403)
 Region <- cut(data$residue, breaks, 
