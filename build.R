@@ -1,5 +1,0 @@
-install.packages("ggplot2")
-install.packages("ggpubr")
-install.packages("cowplot")
-install.packages("patchwork")
-install.packages("dplyr")
