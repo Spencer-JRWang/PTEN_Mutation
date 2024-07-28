@@ -17,5 +17,6 @@ pip install xgboost
 pip install lightgbm
 pip install catboost
 pip install shap
+pip install prody
 
 echo "All packages installed successfully."
