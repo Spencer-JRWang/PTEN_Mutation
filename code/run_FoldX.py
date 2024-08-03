@@ -19,7 +19,7 @@ def run_FoldX(path_to_foldx,WT_PDB,mutant_file):
     with open(mutant_file, 'r') as file:
         for line in file:
             columns = line.strip().split('\t')
-            mutant_data.append(columns[1] + ";")
+            mutant_data.append(columns[1][:1] + "A" + columns[1][1:] + ";")
             type.append(columns[0])
     f = open(path_to_foldx+"/individual_list.txt", "w")
     for item in mutant_data:
@@ -31,7 +31,7 @@ def run_FoldX(path_to_foldx,WT_PDB,mutant_file):
     folder_path = path_to_foldx
     os.chdir(folder_path)
     # run FoldX
-    foldx_command = f"./foldx5 --command=BuildModel --pdb={FoldX_WT_PDB} --mutant-file=individual_list.txt"
+    foldx_command = f"foldx5.exe --command=BuildModel --pdb={FoldX_WT_PDB} --mutant-file=individual_list.txt"
     subprocess.run(foldx_command, shell=True)
     for filename in os.listdir(folder_path):
         # check file name
@@ -62,6 +62,6 @@ def run_FoldX(path_to_foldx,WT_PDB,mutant_file):
     return 0
 
 if __name__ == "__main__":
-    run_FoldX("C:/Users/33385/Desktop/FoldX",
-              "C:/Users/33385/Desktop/data/alphafoldpten.pdb",
-              "C:/Users/33385/Desktop/data/position.txt")
+    run_FoldX("C:/Users/YangMiao/Desktop/PTEN_Mutation/foldx",
+              "C:/Users/YangMiao/Desktop/PTEN_Mutation/data/pten.pdb",
+              "C:/Users/YangMiao/Desktop/PTEN_Mutation/data/position.txt")
