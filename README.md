@@ -13,7 +13,7 @@
 - SHAP: https://shap.readthedocs.io/en/latest
 - Uniref50: https://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50
 
-> Produced by Spencer Wang
+> Produced by Jingran Wang, Miao Yang
 
 > Department of Bioinformatics, Medical College at Soochow University
 
